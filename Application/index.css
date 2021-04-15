@@ -1,6 +1,35 @@
-body{
-    background-color: black;
+
+html, body, #game{
+    margin:0;
+    height: 100%;
+    width: 100%
+} 
+.btn-clr{
+    background: transparent;
+    border: none;
 }
-#game{
-    color: aquamarine;
+ul{
+    padding:0;
+}
+
+.disp-none{
+    font-size: 17px;
+    font-weight: bold;
+    text-decoration: none;
+    color:crimson;
+}
+
+.navigate-options{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+}
+li{
+    list-style-type: none;
+}
+.navigation-bar{
+    margin: 0 auto;
+    max-width: 900px;
+    padding: 40 px;
 }

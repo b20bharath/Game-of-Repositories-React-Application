@@ -1,12 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
+import Navigate from './Components/Navigate.js'
 
 
 class Game extends React.Component{
     render(){
         return (
-            <div> Hello World </div>
+            <div className="navigation-bar"> <Navigate /> </div>
         )
     }
 }
