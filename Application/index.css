@@ -101,3 +101,30 @@ li{
     background: #1c2220;
     min-height: 100%;
 }
+
+.header-sm{
+    font-size: 20px;
+    font-weight: 300;
+    margin: 10px;
+}
+
+.instructions-head{
+    margin: 100px 0;
+}
+.container-sm{
+    width: 80%;
+    margin: 0 auto;
+}
+
+.battle-instructions{
+    padding:0;
+    font-size: 25px;
+}
+.battle-instructions li{
+    flex:1;
+    max-width: 300px;
+}
+.battle-instructions svg{
+    padding:40;
+    border-radius: 3px;
+}

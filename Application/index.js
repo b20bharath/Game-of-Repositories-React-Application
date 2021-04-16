@@ -5,6 +5,7 @@ import Navigate from './Components/Navigate.js'
 import Information from './Components/Navigate.js'
 import {ThemeProvider} from './Components/theme.js'
 import NavigationBar from './Components/Nav_bar.js'
+import Battle from './Components/Battle'
 
 
 class Game extends React.Component{
@@ -28,7 +29,7 @@ class Game extends React.Component{
                 <div className={this.state.theme}>
                     <div className="navigation-bar"> 
                     <NavigationBar />
-                    <Information /> </div>
+                    <Battle /> </div>
                 </div>
             </ThemeProvider>
         )
