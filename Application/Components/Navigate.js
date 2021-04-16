@@ -1,18 +1,19 @@
-import React from 'react'
+import * as React from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
+import {fetchResults} from './fetchingResults'
 
 
-function Navigate ({place,changePlace}){
-    const navigations = ['All Restaurants', 'Restaurants in Chicago', 'Restaurants in Seattle', 'Restaurants in New York']
+function Navigate ({language,changeLanguage}){
+    const navigations = ['All', 'JavaScript', 'Python', 'Java']
     return(
         <ul className="navigate-options">
             {navigations.map((value)=>{
                 return (
                     <li key={value}>
                         <button 
-                        onClick={()=>changePlace(value)} 
-                        style={value === place ? {color: 'rgb(187,36,21)'}:null} 
+                        onClick={()=>changeLanguage(value)} 
+                        style={value === language ? {color: 'rgb(187,36,21)'}:null}
                         className='btn-clr disp-none'>{value}</button>
                     </li>
                 )
@@ -22,29 +23,71 @@ function Navigate ({place,changePlace}){
 }
 
 Navigate.propTypes={
-    place: PropTypes.string.isRequired,
-    changePlace: PropTypes.func.isRequired
+    language: PropTypes.string.isRequired,
+    changeLanguage: PropTypes.func.isRequired
 }
 
 export default class Information extends React.Component{
     constructor(props){
         super(props)
         this.state={
-            place: 'All Restaurants'
+            language: 'All',
+            repos: {},
+            error: null
         }
-        this.changePlace = this.changePlace.bind(this)
+        this.changeLanguage = this.changeLanguage.bind(this)
+        this.isLoading = this.isLoading.bind(this)
     }
-    changePlace(spot){
+    componentDidMount(){
+        this.changeLanguage(this.state.language)
+    }
+    isLoading(){
+        const {repos, error, language} = this.state
+
+        return !repos[language] && <p>Loading </p>
+    }
+
+    changeLanguage(language){
 
         this.setState({
-            place: spot
+            language: language,
+            error: null
         })
+
+        if(!this.state.repos[language]){
+            
+        fetchResults(language)
+        .then((data) => {
+            this.setState(({repos})=>{
+                return {
+                    repos:{
+                        ...repos,
+                        [language]: data
+                    }
+                }
+            })
+        })
+        .catch(()=>{
+            this.setState({
+                error: 'Error Occured while fetching repos'
+            })
+        })
+        }
 
     }
     render(){
+        const {language,error,repos} = this.state
+
+
+
         return(
             <React.Fragment>
-                <Navigate place={this.state.place} changePlace={this.changePlace}/>
+                <Navigate language={this.state.language} changeLanguage={this.changeLanguage}/>
+                {this.isLoading() && <p>Loading</p>}
+
+                {error && <p>{error}</p>}
+
+                {repos[language] && <pre>{JSON.stringify(repos[language],null,3)}</pre>}
             </React.Fragment>
         )
     }
