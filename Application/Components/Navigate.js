@@ -38,7 +38,7 @@ function CreateGrid({repos}){
                 const {login, avatar_url} = owner
                 return (
                 
-                <li key={html_url} className="bg-light repo">
+                <li key={html_url} className="bg-light card">
                     <h3 className="header-repo">Repository: {index+1}</h3>
                     <img className="avatar" src={avatar_url}
                     alt={`Avatar for ${login}`} />
@@ -132,7 +132,7 @@ export default class Information extends React.Component{
                 <Navigate language={this.state.language} changeLanguage={this.changeLanguage}/>
                 {this.isLoading() && <p>Loading</p>}
 
-                {error && <p>{error}</p>}
+                {error && <p className="center-text error">{error}</p>}
 
                 {repos[language] && <CreateGrid repos={repos[language]} />}
             </React.Fragment>

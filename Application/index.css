@@ -87,13 +87,17 @@ li{
     border-radius: 3px;
 }
 
-.repo{
+.card{
     margin: 10px 5px;
     width: 250px;
     padding: 20px;
 }
-.repo a{
+.card a{
     text-decoration: none;
+}
+
+.card img{
+    margin-bottom: 8px;
 }
 
 .dark{
@@ -205,4 +209,14 @@ li{
 
 .player-info link{
     margin-left: 10px;
+}
+
+.btn-space{
+    margin: 40px auto;
+}
+
+.error {
+    font-size: 20px;
+    margin: 50px 0;
+    color: crimson;
 }

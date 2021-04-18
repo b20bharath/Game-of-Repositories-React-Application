@@ -1,6 +1,7 @@
 import React from 'react'
 import { FaUserFriends,  FaFighterJet, FaTrophy, FaTimesCircle } from 'react-icons/fa'
 import PropTypes from 'prop-types'
+import { Report } from './Report'
 
 
 function PlayerPreview({username,onReset,label}){
@@ -88,7 +89,8 @@ export default class Battle extends React.Component{
 
         this.state={
             playerOne: null,
-            playerTwo: null
+            playerTwo: null,
+            battle: false
         }
 
         this.handleSubmit = this.handleSubmit.bind(this)
@@ -108,7 +110,12 @@ export default class Battle extends React.Component{
     }
 
     render(){
-        const {playerOne,playerTwo} = this.state
+        const {playerOne,playerTwo,battle} = this.state
+
+        if(battle === true){
+            return <Report playerOne={playerOne} playerTwo={playerTwo} />
+        }
+
         return (
             <React.Fragment>
                 <Instructions />
@@ -123,9 +130,12 @@ export default class Battle extends React.Component{
                             <PlayerInput label='Player Two' onSubmit={(player)=> this.handleSubmit('playerTwo',player)} />
                         ) : <PlayerPreview username={playerTwo} label={'Player Two'} onReset={()=> this.handleReset('playerTwo')} />}
                     </div>
+                    
+                {playerOne && playerTwo && (<button className="btn btn-dark btn-space" onClick={()=>this.setState({battle:true})}>
+                    Battle
+                </button>)}
                 </div>
 
-                {}
 
             </React.Fragment>
         )
