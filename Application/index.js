@@ -29,7 +29,7 @@ class Game extends React.Component{
                 <div className={this.state.theme}>
                     <div className="navigation-bar"> 
                     <NavigationBar />
-                    <Battle /> </div>
+                    <Navigate /> </div>
                 </div>
             </ThemeProvider>
         )

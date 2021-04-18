@@ -1,6 +1,8 @@
 import React from 'react'
 import {FaCompass, FaBriefcase, FaUserFriends, FaCode, FaUser, FaUsers} from 'react-icons/fa'
 import {data} from './fetchingResults'
+import PropTypes from 'prop-types'
+import Loading from './Loading'
 
 export class Report extends React.Component{
     constructor(props){
@@ -37,7 +39,7 @@ export class Report extends React.Component{
         const {winner, loser, error, loading} = this.state
 
         if(loading === true){
-            return <p>Loading...</p>
+            return <Loading text='Battling' speed={300}/>
         }
 
         if(error){
@@ -47,7 +49,7 @@ export class Report extends React.Component{
         }
 
         return(
-
+            <React.Fragment>
             <div className="grid-v space-around container-sm">
                 <div className="card bg-light">
                     <h4 className="header-lg center-text">
@@ -127,6 +129,14 @@ export class Report extends React.Component{
                 </div>
 
             </div>
+            <button onClick={this.props.onReset} className="btn btn-dark btn-space">RESET</button>
+            </React.Fragment>
         )
     }
+}
+
+Report.propTypes = {
+    playerOne: PropTypes.string.isRequired,
+    playerTwo: PropTypes.string.isRequired,
+    onReset: PropTypes.func.isRequired
 }

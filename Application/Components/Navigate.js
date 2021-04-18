@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import {fetchResults} from './fetchingResults'
 import {FaUser, FaStar, FaCodeBranch, FaExclamationTriangle} from 'react-icons/fa'
+import Loading from './Loading'
 
 
 
@@ -90,7 +91,7 @@ export default class Information extends React.Component{
     isLoading(){
         const {repos, error, language} = this.state
 
-        return !repos[language] && <p>Loading </p>
+        return !repos[language] && <Loading />
     }
 
     changeLanguage(language){
@@ -130,7 +131,7 @@ export default class Information extends React.Component{
 
             <React.Fragment>
                 <Navigate language={this.state.language} changeLanguage={this.changeLanguage}/>
-                {this.isLoading() && <p>Loading</p>}
+                {this.isLoading() && <Loading text = 'Fetching Repos' speed= {300}/>}
 
                 {error && <p className="center-text error">{error}</p>}
 
